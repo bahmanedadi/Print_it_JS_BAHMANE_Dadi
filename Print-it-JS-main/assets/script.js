@@ -31,7 +31,7 @@ rightArrow.addEventListener("click", function droite() {
 })
 
 /*Ajout des bullet points sur la partie basse du slider.*/
-
+for( let i=0;i<4;i++){
 /* 1 creation d'une nouvelle div*/
 const nouvelDiv = document.createElement("div");
 
@@ -40,7 +40,7 @@ nouvelDiv.className = "dot";
 
 /* 3 Sélection de l'élément avec la classe "dots" et ajout de l'élément div comme enfant */
 document.querySelector(".dots").appendChild(nouvelDiv);
-
+}
 
   
     
