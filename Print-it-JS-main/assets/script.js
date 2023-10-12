@@ -17,10 +17,30 @@ const slides = [
 	}
 ]
 
-document.querySelector(".arrow_left").addEventListener("click", function gauche() {
-	console.log("click gauche")
-})
 
-document.querySelector(".arrow_right").addEventListener("click", function droite() {
+const leftArrow = document.querySelector(".arrow_left");
+const rightArrow = document.querySelector(".arrow_right");
+
+/* ajout d'un event listener gauche*/
+leftArrow.addEventListener("click", function gauche() {
+	alert("click gauche")
+})
+/* ajout d'un event listener droite*/
+rightArrow.addEventListener("click", function droite() {
 	console.log("click droite")
 })
+
+/*Ajout des bullet points sur la partie basse du slider.*/
+
+/* 1 creation d'une nouvelle div*/
+const nouvelDiv = document.createElement("div");
+
+/* 2 Ajout de  la classe "dot" à l'élément div */
+nouvelDiv.className = "dot";
+
+/* 3 Sélection de l'élément avec la classe "dots" et ajout de l'élément div comme enfant */
+document.querySelector(".dots").appendChild(nouvelDiv);
+
+
+  
+    
