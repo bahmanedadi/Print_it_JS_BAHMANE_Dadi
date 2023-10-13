@@ -20,15 +20,12 @@ const slides = [
 
 const leftArrow = document.querySelector(".arrow_left");
 const rightArrow = document.querySelector(".arrow_right");
+const tagLine = document.querySelector("#banner p");
+const imageSlide = document.querySelector(".banner-img");
+const baseUrl = "./assets/images/slideshow/";
+const lastSlide = slides.length - 1;
+const firstSlide = slides.length + 1;
 
-/* ajout d'un event listener gauche*/
-leftArrow.addEventListener("click", function gauche() {
-	alert("click gauche")
-})
-/* ajout d'un event listener droite*/
-rightArrow.addEventListener("click", function droite() {
-	console.log("click droite")
-})
 
 /*Ajout des bullet points sur la partie basse du slider.*/
 for (let i = 0; i < 4; i++) {
@@ -39,27 +36,37 @@ for (let i = 0; i < 4; i++) {
 	/* 3 Sélection de l'élément avec la classe "dots" et ajout de l'élément div comme enfant */
 	document.querySelector(".dots").appendChild(nouvelDiv);
 }
-
+let index = 0;
 
 /* recuperer tous les elements dots et appliquerla classe dot_selected */
 const allDots = document.querySelectorAll(".dot");
 allDots[index].classList.add("dot_selected");
 
-
-const tagline = document.querySelector("#banner p");
-const imageSlide = document.querySelector(".banner-img");
-/*document.querySelector(".banner-img").src = "./assets/images/slideshow/" + slides[index].image;
-document.querySelector("#banner p").innerHTML = slides[index].document.querySelector("#banner p");*/
-
 leftArrow.addEventListener("click", function gauche() {
-	const lastSlide = slides.length-1;
-	if ('index == 0 ') {
-		index = lastSlide
+	allDots[index].classList.remove("dot_selected");
+	if (index == 0) {
+		index = lastSlide;
 	}
-	else{
+	else {
 		index--;
 	}
-	document.querySelector(".banner-img").src = "./assets/images/slideshow/" + slides[index].image;
-	document.querySelector("#banner p").innerHTML = slides[index].document.querySelector("#banner p");
 
-})
+	allDots[index].classList.add("dot_selected");
+	imageSlide.src = baseUrl + slides[index].image;
+	tagLine.innerHTML = slides[index].tagLine;
+});
+
+rightArrow.addEventListener("click", function droite() {
+	allDots[index].classList.remove("dot_selected");
+	if (index === lastSlide) {
+		index = 0;
+	}
+	else {
+		index++;
+	}
+
+	allDots[index].classList.add("dot_selected");
+	imageSlide.src = baseUrl + slides[index].image;
+	tagLine.innerHTML = slides[index].tagLine;
+
+});
