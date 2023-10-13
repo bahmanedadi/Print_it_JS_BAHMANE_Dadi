@@ -41,4 +41,25 @@ for (let i = 0; i < 4; i++) {
 }
 
 
+/* recuperer tous les elements dots et appliquerla classe dot_selected */
+const allDots = document.querySelectorAll(".dot");
+allDots[index].classList.add("dot_selected");
 
+
+const tagline = document.querySelector("#banner p");
+const imageSlide = document.querySelector(".banner-img");
+/*document.querySelector(".banner-img").src = "./assets/images/slideshow/" + slides[index].image;
+document.querySelector("#banner p").innerHTML = slides[index].document.querySelector("#banner p");*/
+
+leftArrow.addEventListener("click", function gauche() {
+	const lastSlide = slides.length-1;
+	if ('index == 0 ') {
+		index = lastSlide
+	}
+	else{
+		index--;
+	}
+	document.querySelector(".banner-img").src = "./assets/images/slideshow/" + slides[index].image;
+	document.querySelector("#banner p").innerHTML = slides[index].document.querySelector("#banner p");
+
+})
