@@ -47,23 +47,32 @@ for (let i = 0; i < 4; i++) {
 const allDots = document.querySelectorAll(".dot");
 
 function updateSlide(direction) {
-    allDots[index].classList.remove("dot_selected");
+	allDots[index].classList.remove("dot_selected");
 
-    if (direction === "gauche") {
-        index = (index === 0) ? lastSlide : index - 1;
-    } else if (direction === "droite") {
-        index = (index === lastSlide) ? 0 : index + 1;
-    }
+	if (direction === "gauche") {
+		if (index === 0) {
+			index = lastSlide;
+		} else {
+			index = index - 1;
+		}
 
-    allDots[index].classList.add("dot_selected");
-    imageSlide.src = baseUrl + slides[index].image;
-    tagLine.innerHTML = slides[index].tagLine;
+	} else if (direction === "droite") {
+		if (index === lastSlide) {
+			index = 0;
+		} else {
+			index = index + 1;
+		}
+	}
+
+	allDots[index].classList.add("dot_selected");
+	imageSlide.src = baseUrl + slides[index].image;
+	tagLine.innerHTML = slides[index].tagLine;
 }
 
-leftArrow.addEventListener("click", function() {
-    updateSlide("gauche");
+leftArrow.addEventListener("click", function () {
+	updateSlide("gauche");
 });
 
-rightArrow.addEventListener("click", function() {
-    updateSlide("droite");
+rightArrow.addEventListener("click", function () {
+	updateSlide("droite");
 });
