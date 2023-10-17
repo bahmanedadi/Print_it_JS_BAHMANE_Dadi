@@ -40,41 +40,30 @@ for (let i = 0; i < 4; i++) {
 
 	/* Sélectionnez l'élément avec la classe "dots" et ajoutez l'élément div comme enfant */
 	document.querySelector(".dots").appendChild(nouveauDiv);
-
-
 }
+
+
 /* recuperer tous les elements dots et appliquerla classe dot_selected */
 const allDots = document.querySelectorAll(".dot");
-leftArrow.addEventListener("click", function gauche() {
-	allDots[index].classList.remove("dot_selected");
 
-	if (index === 0) {
-		index = lastSlide;
-	}
-	else {
-		index--;
-	}
+function updateSlide(direction) {
+    allDots[index].classList.remove("dot_selected");
 
-	allDots[index].classList.add("dot_selected");
-	imageSlide.src = baseUrl + slides[index].image;
-	tagLine.innerHTML = slides[index].tagLine;
+    if (direction === "gauche") {
+        index = (index === 0) ? lastSlide : index - 1;
+    } else if (direction === "droite") {
+        index = (index === lastSlide) ? 0 : index + 1;
+    }
 
+    allDots[index].classList.add("dot_selected");
+    imageSlide.src = baseUrl + slides[index].image;
+    tagLine.innerHTML = slides[index].tagLine;
+}
+
+leftArrow.addEventListener("click", function() {
+    updateSlide("gauche");
 });
 
-rightArrow.addEventListener("click", function droite() {
-	allDots[index].classList.remove("dot_selected");
-
-	if (index === lastSlide) {
-		index = 0;
-	}
-	else {
-		index++;
-	}
-
-
-
-	allDots[index].classList.add("dot_selected");
-	imageSlide.src = baseUrl + slides[index].image;
-	tagLine.innerHTML = slides[index].tagLine;
-
+rightArrow.addEventListener("click", function() {
+    updateSlide("droite");
 });
