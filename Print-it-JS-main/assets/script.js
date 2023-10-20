@@ -23,7 +23,6 @@ let index = 0;
 const leftArrow = document.querySelector(".arrow_left");
 const rightArrow = document.querySelector(".arrow_right");
 const lastSlide = slides.length - 1;
-const firstSlide = slides.length + 1;
 const imageSlide = document.querySelector(".banner-img");
 const tagLine = document.querySelector("#banner p");
 const baseUrl = "./assets/images/slideshow/";
@@ -31,17 +30,12 @@ const baseUrl = "./assets/images/slideshow/";
 
 /*Ajout des bullet points sur la partie basse du slider.*/
 
-for (let i = 0; i < 4; i++) {
-	/* Créez un élément div */
+for (let i = 0; i < slides.length; i++) {
+	
 	const nouveauDiv = document.createElement("div");
-
-	/* Ajoutez la classe "dot" à l'élément div */
 	nouveauDiv.className = "dot";
-
-	/* Sélectionnez l'élément avec la classe "dots" et ajoutez l'élément div comme enfant */
 	document.querySelector(".dots").appendChild(nouveauDiv);
 }
-
 
 /* recuperer tous les elements dots et appliquerla classe dot_selected */
 const allDots = document.querySelectorAll(".dot");
@@ -53,14 +47,14 @@ function updateSlide(direction) {
 		if (index === 0) {
 			index = lastSlide;
 		} else {
-			index = index - 1;
+			index --;
 		}
 
 	} else if (direction === "droite") {
 		if (index === lastSlide) {
 			index = 0;
 		} else {
-			index = index + 1;
+			index ++;
 		}
 	}
 
